@@ -12,6 +12,7 @@ const App = () => {
           <Route path='' element={<Navigate to="/login" />} />
           <Route path='/login' element={<Login />}></Route>
           <Route path='/prompt' element={<Prompt />}></Route>
+          <Route path="*" element={<Navigate to="/login" />}/>
         </Routes>
       </Suspense>
     </>
