@@ -1,18 +1,21 @@
-import React from 'react';
-import './App.css'; // Import your CSS file for styling
+import React, { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+const Login = lazy(() => import('./components/Login'));
+const Prompt = lazy(() => import('./components/Prompt'))
 
 const App = () => {
   return (
-    <div id="login-form">
-      <h1>Login</h1>
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" />
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+    <>
+      <Suspense>
+        <Routes>
+          <Route path='' element={<Navigate to="/login" />} />
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/prompt' element={<Prompt />}></Route>
+          <Route path="*" element={<Navigate to="/login" />}/>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 
