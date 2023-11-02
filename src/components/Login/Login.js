@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import ToastContainer from './Toastr';
+import ToastContainer from './../Toastr';
+import './Login.css';
+import backgroundImage from './../../background.svg'
+import logo from './../../logo.svg';
 
-const BackgroundContainer = styled.div`
-  background-image: url('https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&q=80&w=2970&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh; /* Make the container full-height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const LoginForm = styled.div`
   width: 400px;
   max-width: 100%;
-  margin: 50px auto;
-  background-color: lightblue;
+  margin: 100px auto;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   font-family: "Poppins", sans-serif;
 `;
 
@@ -30,17 +21,17 @@ const Heading = styled.h1`
   padding: 20px 0;
   font-size: 28px;
   font-weight: bold;
-  color: white;
+  color: black;
 `;
 
 const Form = styled.form`
   padding: 20px;
   background-color: white;
-  border-radius: 10px;
   font-family: "Poppins", sans-serif;
 `;
 
 const Label = styled.label`
+  text-align: left;
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
@@ -68,18 +59,18 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: dodgerblue;
+  background-color: black;
   border: none;
   color: white;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 32px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  margin-top: 10px
 
   &:hover {
-    background-color: deepskyblue;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
 `;
@@ -131,21 +122,34 @@ const Login = () => {
       });
   }
 
+
   return (
-    <BackgroundContainer>
-      <LoginForm>
-        <Heading>Login</Heading>
-        <Form onSubmit={login}>
-          <Label>Username:</Label>
-          <Input type="text" id="email" name="email" value={email} onChange={onEmailChange} placeholder="Enter your email" />
-          <Label>Password:</Label>
-          <Input type="password" id="password" name="password" value={password} onChange={onPasswordChange} placeholder="Enter your password" />
-          <Button type="submit">Login</Button>
-          <ToastContainer show={showToast.toString()}>{error}</ToastContainer>
-        </Form>
-      </LoginForm>
-    </BackgroundContainer>
+
+    <div className="container">
+      <div className="app-container">
+        <div className="left-column">
+          <img className="left-img" src={backgroundImage} alt="background" />
+        </div>
+        <div className="right-column">
+          <LoginForm>
+            <img className="logo" src={logo} alt="logo"></img>
+            <Heading>Welcome back!</Heading>
+            <h5>Login and Explore Your Digital Playground</h5>
+            <Form onSubmit={login}>
+              <Label>Email</Label>
+              <Input type="text" id="email" name="email" value={email} onChange={onEmailChange} placeholder="Enter your email" />
+              <Label>Password</Label>
+              <Input type="password" id="password" name="password" value={password} onChange={onPasswordChange} placeholder="Enter your password" />
+              <Button type="submit">Login</Button>
+              <ToastContainer show={showToast.toString()}>{error}</ToastContainer>
+            </Form>
+          </LoginForm>
+        </div>
+      </div>
+    </div>
+
   );
 }
+
 
 export default Login;
